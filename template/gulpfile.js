@@ -90,13 +90,34 @@ const images = () => src('src/images/**/*.{gif,jpg,png,svg}')
 
 exports.images = images
 
+// FAVICON
+
+const favicon = () => src('src/favicon.ico', { allowEmpty: true }).pipe(dest('dist'))
+
+exports.favicon = favicon
+
+// FONTS
+
+const fonts = () => src('src/fonts/**/*').pipe(dest('dist/fonts'))
+
+exports.fonts = fonts
+
+// VIDEOS
+
+const videos = () => src('src/videos/**/*').pipe(dest('dist/videos'))
+
+exports.videos = videos
+
 // DEFAULT
 
 exports.default = series(
   parallel(
     css,
     js,
-    images
+    images,
+    favicon,
+    fonts,
+    videos
   ),
   html
 )
