@@ -1,4 +1,9 @@
-.DS_Store
-node_modules
 *.log
+*.map
+
+.DS_Store
 dist
+node_modules
+
+template/dist
+template/package-lock.json
