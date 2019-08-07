@@ -132,6 +132,18 @@ const server = done => {
 exports.reload = reload
 exports.server = server
 
+// WATCH
+
+const watch = done => {
+  gulp.watch('src/html/**/*.html', gulp.series(html, reload))
+  gulp.watch('src/sass/**/*.scss', gulp.series(css, reload))
+  gulp.watch('src/js/**/*.js', gulp.series(js, reload))
+  gulp.watch('src/images/**/*.{gif,jpg,png,svg}', gulp.series(images, reload))
+  done()
+}
+
+exports.watch = watch
+
 // DEFAULT
 
 exports.default = gulp.series(
@@ -143,7 +155,8 @@ exports.default = gulp.series(
     favicon,
     fonts,
     videos,
-    server
+    server,
+    watch
   ),
   html
 )
