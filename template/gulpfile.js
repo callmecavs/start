@@ -125,8 +125,15 @@ const options = {
   }
 }
 
-const reload = browsersync.reload
-const server = () => browsersync.init(options)
+const reload = done => {
+  browsersync.reload()
+  done()
+}
+
+const server = done => {
+  browsersync.init(options)
+  done()
+}
 
 exports.server = server
 
