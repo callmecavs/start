@@ -5,8 +5,8 @@
   "author": "",
   "license": "",
   "scripts": {
-    "dev": "gulp",
-    "prod": "gulp build"
+    "dev": "gulp dev",
+    "prod": "gulp prod"
   },
   "dependencies": {
     "core-js": "^3.1.4"
