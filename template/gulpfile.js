@@ -1,5 +1,6 @@
 const {
   dest,
+  parallel,
   src
 } = require('gulp')
 
@@ -70,3 +71,11 @@ const js = async () => {
 }
 
 exports.js = js
+
+// DEFAULT
+
+exports.default = parallel(
+  html,
+  css,
+  js
+)
