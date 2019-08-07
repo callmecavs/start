@@ -116,7 +116,7 @@ const videos = () => src('src/videos/**/*').pipe(dest('dist/videos'))
 
 exports.videos = videos
 
-// SERVER
+// SERVER & RELOAD
 
 const options = {
   notify: false,
@@ -135,6 +135,7 @@ const server = done => {
   done()
 }
 
+exports.reload = reload
 exports.server = server
 
 // DEFAULT
