@@ -7,6 +7,7 @@ const {
 
 const autoprefixer = require('autoprefixer')
 const babel = require('rollup-plugin-babel')
+const browsersync = require('browser-sync').create()
 const commonjs = require('rollup-plugin-commonjs')
 const csso = require('gulp-csso')
 const htmlmin = require('gulp-htmlmin')
@@ -108,6 +109,20 @@ const videos = () => src('src/videos/**/*').pipe(dest('dist/videos'))
 
 exports.videos = videos
 
+// SERVER
+
+const options = {
+  notify: false,
+  server: {
+    baseDir: './dist'
+  }
+}
+
+const reload = browsersync.reload
+const server = () => browsersync.init(options)
+
+exports.server = server
+
 // DEFAULT
 
 exports.default = series(
@@ -117,7 +132,8 @@ exports.default = series(
     images,
     favicon,
     fonts,
-    videos
+    videos,
+    server
   ),
   html
 )
