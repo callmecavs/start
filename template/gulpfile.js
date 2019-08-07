@@ -144,9 +144,9 @@ const watch = done => {
 
 exports.watch = watch
 
-// DEFAULT
+// DEV
 
-exports.default = gulp.series(
+const dev = gulp.series(
   clean,
   gulp.parallel(
     css,
@@ -160,3 +160,23 @@ exports.default = gulp.series(
   ),
   html
 )
+
+exports.dev = dev
+
+// PROD
+
+const prod = gulp.series(
+  clean,
+  gulp.parallel(
+    css,
+    js,
+    images,
+    favicon,
+    fonts,
+    videos
+  ),
+  html
+)
+
+exports.prod = prod
+
