@@ -9,9 +9,13 @@ const arg = process.argv[2] || '.'
 const TEMPLATE = `${ __dirname }/template`
 const TARGET = `${ process.cwd() }/${ arg }`
 
-try {
-  await fs.copy(TEMPLATE, TARGET)
-  await fs.move(`${ TARGET }/gitignore`, `${ TARGET }/.gitignore`)
-} catch (error) {
-  console.log(error)
+const run = async () => {
+  try {
+    await fs.copy(TEMPLATE, TARGET)
+    await fs.move(`${ TARGET }/gitignore`, `${ TARGET }/.gitignore`)
+  } catch (error) {
+    console.log(error)
+  }
 }
+
+run()
