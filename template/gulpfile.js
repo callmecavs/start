@@ -1,6 +1,7 @@
 const {
   dest,
   parallel,
+  series,
   src
 } = require('gulp')
 
@@ -9,7 +10,9 @@ const babel = require('rollup-plugin-babel')
 const commonjs = require('rollup-plugin-commonjs')
 const csso = require('gulp-csso')
 const htmlmin = require('gulp-htmlmin')
+const imagemin = require('gulp-imagemin')
 const include = require('gulp-file-include')
+const mozjpeg = require('imagemin-mozjpeg')
 const postcss = require('gulp-postcss')
 const resolve = require('rollup-plugin-node-resolve')
 const rollup = require('rollup')
@@ -72,10 +75,28 @@ const js = async () => {
 
 exports.js = js
 
+// IMAGES
+
+const plugins = [
+  imagemin.gifsicle({ interlaced: true }),
+  imagemin.optipng(),
+  imagemin.svgo(),
+  mozjpeg({ quality: 75 })
+]
+
+const images = () => src('src/images/**/*.{gif,jpg,png,svg}')
+  .pipe(imagemin(plugins))
+  .pipe(dest('dist/images'))
+
+exports.images = images
+
 // DEFAULT
 
-exports.default = parallel(
-  html,
-  css,
-  js
+exports.default = series(
+  parallel(
+    css,
+    js,
+    images
+  ),
+  html
 )
