@@ -26,6 +26,6 @@
   "preferGlobal": true,
 
   "dependencies": {
-    "fs-extra": "^1.0.0"
+    "fs-extra": "^8.1.0"
   }
 }
