@@ -10,6 +10,7 @@ const babel = require('rollup-plugin-babel')
 const browsersync = require('browser-sync').create()
 const commonjs = require('rollup-plugin-commonjs')
 const csso = require('gulp-csso')
+const del = require('del')
 const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
 const include = require('gulp-file-include')
@@ -21,6 +22,12 @@ const rucksack = require('rucksack-css')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
 const { terser } = require('rollup-plugin-terser')
+
+// CLEAN
+
+const clean = () => del('dist')
+
+exports.clean = clean
 
 // HTML
 
@@ -126,6 +133,7 @@ exports.server = server
 // DEFAULT
 
 exports.default = series(
+  clean,
   parallel(
     css,
     js,
