@@ -180,3 +180,7 @@ const prod = gulp.series(
 
 exports.prod = prod
 
+// DEFAULT
+// aliased to dev
+
+exports.default = dev
