@@ -1,16 +1,10 @@
-const {
-  dest,
-  parallel,
-  series,
-  src
-} = require('gulp')
-
 const autoprefixer = require('autoprefixer')
 const babel = require('rollup-plugin-babel')
 const browsersync = require('browser-sync').create()
 const commonjs = require('rollup-plugin-commonjs')
 const csso = require('gulp-csso')
 const del = require('del')
+const gulp = require('gulp')
 const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
 const include = require('gulp-file-include')
@@ -31,10 +25,10 @@ exports.clean = clean
 
 // HTML
 
-const html = () => src('src/html/*.html')
+const html = () => gulp.src('src/html/*.html')
   .pipe(include({ prefix: '@', basepath: 'src/' }))
   .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-  .pipe(dest('dist'))
+  .pipe(gulp.dest('dist'))
 
 exports.html = html
 
@@ -45,13 +39,13 @@ const processors = [
   autoprefixer()
 ]
 
-const css = () => src('src/sass/style.scss')
+const css = () => gulp.src('src/sass/style.scss')
   .pipe(sourcemaps.init())
   .pipe(sass())
   .pipe(postcss(processors))
   .pipe(csso())
   .pipe(sourcemaps.write('./maps'))
-  .pipe(dest('dist'))
+  .pipe(gulp.dest('dist'))
 
 exports.css = css
 
@@ -92,27 +86,27 @@ const plugins = [
   mozjpeg({ quality: 75 })
 ]
 
-const images = () => src('src/images/**/*.{gif,jpg,png,svg}')
+const images = () => gulp.src('src/images/**/*.{gif,jpg,png,svg}')
   .pipe(imagemin(plugins))
-  .pipe(dest('dist/images'))
+  .pipe(gulp.dest('dist/images'))
 
 exports.images = images
 
 // FAVICON
 
-const favicon = () => src('src/favicon.ico', { allowEmpty: true }).pipe(dest('dist'))
+const favicon = () => gulp.src('src/favicon.ico', { allowEmpty: true }).pipe(gulp.dest('dist'))
 
 exports.favicon = favicon
 
 // FONTS
 
-const fonts = () => src('src/fonts/**/*').pipe(dest('dist/fonts'))
+const fonts = () => gulp.src('src/fonts/**/*').pipe(gulp.dest('dist/fonts'))
 
 exports.fonts = fonts
 
 // VIDEOS
 
-const videos = () => src('src/videos/**/*').pipe(dest('dist/videos'))
+const videos = () => gulp.src('src/videos/**/*').pipe(gulp.dest('dist/videos'))
 
 exports.videos = videos
 
@@ -140,9 +134,9 @@ exports.server = server
 
 // DEFAULT
 
-exports.default = series(
+exports.default = gulp.series(
   clean,
-  parallel(
+  gulp.parallel(
     css,
     js,
     images,
