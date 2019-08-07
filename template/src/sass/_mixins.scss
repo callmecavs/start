@@ -26,3 +26,7 @@
     @content;
   }
 }
+
+@mixin tracking($number) {
+  letter-spacing: ($number / 1000) * 1em;
+}
