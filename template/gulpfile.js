@@ -94,19 +94,22 @@ exports.images = images
 
 // FAVICON
 
-const favicon = () => gulp.src('src/favicon.ico', { allowEmpty: true }).pipe(gulp.dest('dist'))
+const favicon = () => gulp.src('src/favicon.ico', { allowEmpty: true })
+  .pipe(gulp.dest('dist'))
 
 exports.favicon = favicon
 
 // FONTS
 
-const fonts = () => gulp.src('src/fonts/**/*').pipe(gulp.dest('dist/fonts'))
+const fonts = () => gulp.src('src/fonts/**/*')
+  .pipe(gulp.dest('dist/fonts'))
 
 exports.fonts = fonts
 
 // VIDEOS
 
-const videos = () => gulp.src('src/videos/**/*').pipe(gulp.dest('dist/videos'))
+const videos = () => gulp.src('src/videos/**/*')
+  .pipe(gulp.dest('dist/videos'))
 
 exports.videos = videos
 
