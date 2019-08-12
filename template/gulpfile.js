@@ -152,6 +152,7 @@ exports.watch = watch
 const dev = gulp.series(
   clean,
   gulp.parallel(
+    html,
     css,
     js,
     images,
@@ -160,8 +161,7 @@ const dev = gulp.series(
     videos,
     server,
     watch
-  ),
-  html
+  )
 )
 
 exports.dev = dev
@@ -171,14 +171,14 @@ exports.dev = dev
 const prod = gulp.series(
   clean,
   gulp.parallel(
+    html,
     css,
     js,
     images,
     favicon,
     fonts,
     videos
-  ),
-  html
+  )
 )
 
 exports.prod = prod
