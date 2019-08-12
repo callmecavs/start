@@ -68,13 +68,16 @@ const processors = [
   autoprefixer()
 ]
 
-const css = () => gulp.src('src/sass/style.scss')
-  .pipe(sourcemaps.init())
-  .pipe(sass())
-  .pipe(postcss(processors))
-  .pipe(csso())
-  .pipe(sourcemaps.write('./maps'))
-  .pipe(gulp.dest('dist'))
+const css = done => pipeline(
+  gulp.src('src/sass/style.scss'),
+  sourcemaps.init(),
+  sass(),
+  postcss(processors),
+  csso(),
+  sourcemaps.write('./maps'),
+  gulp.dest('dist'),
+  error => onError('CSS', error, done)
+)
 
 exports.css = css
 
