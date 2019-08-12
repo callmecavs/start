@@ -9,6 +9,8 @@ const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
 const include = require('gulp-file-include')
 const mozjpeg = require('imagemin-mozjpeg')
+const notifier = require('node-notifier')
+const { pipeline } = require('stream')
 const postcss = require('gulp-postcss')
 const resolve = require('rollup-plugin-node-resolve')
 const rollup = require('rollup')
@@ -16,6 +18,28 @@ const rucksack = require('rucksack-css')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
 const { terser } = require('rollup-plugin-terser')
+
+// ERROR
+
+const onError = (task, error, done) => {
+  if (!error) return
+
+  notifier.notify({
+    title: 'Build Error',
+    message: `Task: ${ task }`
+  })
+
+  const log = [
+    'Error',
+    `Task: ${ task }`,
+    `Plugin: ${ error.plugin }`,
+    `File: ${ error.fileName }`
+  ].join('\n')
+
+  console.log(log)
+
+  done()
+}
 
 // CLEAN
 
@@ -25,10 +49,13 @@ exports.clean = clean
 
 // HTML
 
-const html = () => gulp.src('src/html/*.html')
-  .pipe(include({ prefix: '@', basepath: 'src/' }))
-  .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-  .pipe(gulp.dest('dist'))
+const html = done => pipeline(
+  gulp.src('src/html/*.html'),
+  include({ prefix: '@', basepath: 'src/' }),
+  htmlmin({ collapseWhitespace: true, removeComments: true }),
+  gulp.dest('dist'),
+  error => onError('HTML', error, done)
+)
 
 exports.html = html
 
