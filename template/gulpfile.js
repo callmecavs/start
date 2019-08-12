@@ -31,14 +31,14 @@ const onError = (task, error, done) => {
     message: `Task: ${ task }`
   })
 
-  const detail = stripIndent`
+  const meta = stripIndent`
     ${ chalk.bgRed.white.bold(' Error ') }
     ${ chalk.yellow('Task:') } ${ task } (${ error.plugin })
-    ${ chalk.yellow('File:') } ${ error.fileName }
-    ${ chalk.yellow('Stack:') }
+    ${ chalk.yellow('File:') } ${ error.fileName || 'Unknown' }
+    ${ chalk.yellow('Trace:') }
   `
 
-  console.log(`\n${ detail }\n\n${ error.stack }\n`)
+  console.log(`\n${ meta }\n\n${ error.stack }\n`)
 
   done()
 }
