@@ -1,6 +1,7 @@
 const autoprefixer = require('autoprefixer')
 const babel = require('rollup-plugin-babel')
 const browsersync = require('browser-sync').create()
+const chalk = require('chalk')
 const commonjs = require('rollup-plugin-commonjs')
 const csso = require('gulp-csso')
 const del = require('del')
@@ -17,6 +18,7 @@ const rollup = require('rollup')
 const rucksack = require('rucksack-css')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
+const { stripIndent } = require('common-tags')
 const { terser } = require('rollup-plugin-terser')
 
 // ERROR
@@ -29,14 +31,14 @@ const onError = (task, error, done) => {
     message: `Task: ${ task }`
   })
 
-  const log = [
-    'Error',
-    `Task: ${ task }`,
-    `Plugin: ${ error.plugin }`,
-    `File: ${ error.fileName }`
-  ].join('\n')
+  const detail = stripIndent`
+    ${ chalk.bgRed.white.bold(' Error ') }
+    ${ chalk.yellow('Task:') } ${ task } (${ error.plugin })
+    ${ chalk.yellow('File:') } ${ error.fileName }
+    ${ chalk.yellow('Stack:') }
+  `
 
-  console.log(log)
+  console.log(`\n${ detail }\n\n${ error.stack }\n`)
 
   done()
 }

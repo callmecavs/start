@@ -17,6 +17,7 @@
     "autoprefixer": "^9.6.1",
     "browser-sync": "^2.26.7",
     "chalk": "^2.4.2",
+    "common-tags": "^1.8.0",
     "del": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-csso": "^3.0.1",
