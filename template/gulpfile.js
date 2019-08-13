@@ -31,10 +31,13 @@ const onError = (task, error, done) => {
     message: `Task: ${ task }`
   })
 
+  const plugin = error.plugin || 'Unknown'
+  const file = error.fileName || (error.loc && error.loc.file) || 'Unknown'
+
   const meta = stripIndent`
     ${ chalk.bgRed.white.bold(' Error ') }
-    ${ chalk.yellow('Task:') } ${ task } (${ error.plugin || 'Unknown' })
-    ${ chalk.yellow('File:') } ${ error.fileName || (error.loc && error.loc.file) || 'Unknown' }
+    ${ chalk.yellow('Task:') } ${ task } (${ plugin })
+    ${ chalk.yellow('File:') } ${ file }
     ${ chalk.yellow('Trace:') }
   `
 
