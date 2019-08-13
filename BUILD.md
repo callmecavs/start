@@ -1,3 +1,9 @@
+# Browser Support
+
+Note that Outset **doesn't detect browsers or their features** out of the box.
+
+Adjust the provided [`.browserslistrc`](https://github.com/callmecavs/outset/blob/master/template/.browserslistrc) file to prefix your CSS and polyfill JS features based on your target environment(s).
+
 # HTML
 
 Simply an `index.html` file.

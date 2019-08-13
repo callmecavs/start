@@ -8,7 +8,7 @@ A frontend scaffolding tool.
 
 Outset is developed with the intention of being **the solution to writing frontend code instantly**.
 
-The magic happens in the [build](https://github.com/callmecavs/outset/blob/master/template/gulpfile.js), with the actual [boilerplate](https://github.com/callmecavs/outset/tree/master/template/src) being intentionally minimal. A more detailed explanation of both can be found below.
+The magic happens in the [build](https://github.com/callmecavs/outset/blob/master/template/gulpfile.js), with the actual [boilerplate](https://github.com/callmecavs/outset/tree/master/template/src) being intentionally minimal. A more detailed explanation of both can be found [here](https://github.com/callmecavs/outset/blob/master/BUILD.md).
 
 ## Usage
 
@@ -35,12 +35,6 @@ http://localhost:3000/
 ```
 
 Work in the `src` folder, deploy from the `dist` folder.
-
-## Browser Support
-
-Note that Outset **doesn't detect browsers or their features** out of the box.
-
-Adjust the provided [`.browserslistrc`](https://github.com/callmecavs/outset/blob/master/template/.browserslistrc) file to prefix your CSS and polyfill JS features based on your target environment(s).
 
 ## License
 
