@@ -8,7 +8,7 @@ A frontend scaffolding tool.
 
 Outset is developed with the intention of being **the solution to writing frontend code instantly**.
 
-The magic happens in the [build](https://github.com/callmecavs/outset/blob/master/template/gulpfile.js), with the actual [boilerplate](https://github.com/callmecavs/outset/tree/master/template/src) being intentionally minimal. A more detailed explanation of both can be found [here](https://github.com/callmecavs/outset/blob/master/BUILD.md).
+The magic happens in the [build](https://github.com/callmecavs/outset/blob/master/template/gulpfile.js), with the actual [boilerplate](https://github.com/callmecavs/outset/tree/master/template/src) being intentionally minimal. A more detailed **explanation of both can be found [here](https://github.com/callmecavs/outset/blob/master/BUILD.md)**.
 
 ## Usage
 
