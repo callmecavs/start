@@ -34,7 +34,7 @@ const onError = (task, error, done) => {
   const meta = stripIndent`
     ${ chalk.bgRed.white.bold(' Error ') }
     ${ chalk.yellow('Task:') } ${ task } (${ error.plugin })
-    ${ chalk.yellow('File:') } ${ error.fileName || 'Unknown' }
+    ${ chalk.yellow('File:') } ${ error.fileName || error.loc.file || 'Unknown' }
     ${ chalk.yellow('Trace:') }
   `
 
@@ -102,8 +102,15 @@ const write = {
   sourcemap: true
 }
 
-const js = async () => {
-  const bundle = await rollup.rollup(read)
+const js = async done => {
+  let bundle
+
+  try {
+    bundle = await rollup.rollup(read)
+  } catch (error) {
+    onError('JS', error, done)
+  }
+
   await bundle.write(write)
 }
 
