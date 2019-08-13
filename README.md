@@ -2,15 +2,15 @@
 
 [![Outset on NPM](https://img.shields.io/npm/v/outset.svg?style=flat-square)](https://www.npmjs.com/package/outset) [![Outset Downloads on NPM](https://img.shields.io/npm/dm/outset.svg?style=flat-square)](https://www.npmjs.com/package/outset)
 
-A minimal frontend boilerplate, emphasizing workflow.
+A frontend scaffolding tool.
 
 ## About
 
-Outset is **a workflow moreso than it is a boilerplate**, developed with the intention of being the solution to writing frontend code instantly.
+Outset is developed with the intention of being the solution to writing frontend code instantly.
 
-All the magic happens in the [`gulpfile`](https://github.com/callmecavs/outset/blob/master/template/gulpfile.js). The actual [boilerplate](https://github.com/callmecavs/outset/tree/master/template/src) is intentionally minimal. A more detailed explanation of both can be found below.
+The magic happens in the [`build step`](https://github.com/callmecavs/outset/blob/master/template/gulpfile.js), with the actual [boilerplate](https://github.com/callmecavs/outset/tree/master/template/src) being intentionally minimal. A more detailed explanation of both can be found below.
 
-## Getting Started
+## Usage
 
 In your terminal:
 
