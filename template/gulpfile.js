@@ -125,9 +125,12 @@ const plugins = [
   mozjpeg({ quality: 75 })
 ]
 
-const images = () => gulp.src('src/images/**/*.{gif,jpg,png,svg}')
-  .pipe(imagemin(plugins))
-  .pipe(gulp.dest('dist/images'))
+const images = done => pipeline(
+  gulp.src('src/images/**/*.{gif,jpg,png,svg}'),
+  imagemin(plugins),
+  gulp.dest('dist/images'),
+  error => onError('Images', error, done)
+)
 
 exports.images = images
 
