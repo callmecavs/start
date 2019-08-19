@@ -196,6 +196,9 @@ const watch = done => {
   gulp.watch('src/sass/**/*.scss', gulp.series(css, reload))
   gulp.watch('src/js/**/*.js', gulp.series(js, reload))
   gulp.watch('src/images/**/*.{gif,jpg,png,svg}', gulp.series(images, reload))
+  gulp.watch('src/favicon.ico', gulp.series(favicon, reload))
+  gulp.watch('src/fonts/**/*', gulp.series(fonts, reload))
+  gulp.watch('src/videos/**/*', gulp.series(videos, reload))
   done()
 }
 
